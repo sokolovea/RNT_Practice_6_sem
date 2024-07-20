@@ -1,0 +1,128 @@
+.gameWindow
+{
+    position: relative;
+    width: 1500px;
+    height: 800px;
+    margin: auto;
+    border: 10px solid rgb(91, 93, 83);
+    background-color: rgb(91, 93, 83);
+    color: white;
+    h1
+    {
+        text-align: center;
+    }
+}
+
+#changeRoles {
+    position: absolute;
+    width: 1500px;
+    border-bottom: 2px solid white;
+    padding: 5px 0px 15px 5px;
+    margin: auto;
+    text-align: center;
+}
+
+#progressBarContainer {
+    width: 50%;
+    margin: auto;
+    background: white;
+    text-align: left;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    height: 15px;
+}
+
+#progressBarFill {
+    width: 0%;
+    height: 100%;
+    background: red;
+    border-radius: 3px 0 0 3px;
+    transition: width 0.5s;
+}
+
+.commandsContainer
+{
+    position: absolute;
+    top: 138px;
+    width: 200px;
+    height: 590px;
+    margin: 5px;
+}
+
+#logs
+{
+    position: absolute;
+    top: 138px;
+    width: 200px;
+    height: 590px;
+    left: 1056px;
+    resize: none;
+    border: none;
+    background-color: inherit;
+    color: inherit;
+    margin: 0px;
+}
+
+#map
+{
+    position: absolute;
+    left: 446px;
+    top: 138px;
+    width: 602px;
+    height: 602px;
+    max-width: 1090px;
+    max-height: 602px;
+    background-color: inherit;
+    border-right: 2px solid white;
+    border-left: 2px solid white;
+}
+
+.buttonsContainer
+{
+    position: absolute;
+    bottom: 0px;
+    width: 1500px;
+    height: 45px;
+    border-top: 2px solid white;
+    margin: auto;
+    padding-top: 15px;
+    text-align: center;
+    button
+    {
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        height: 25px;
+    }
+
+    button:hover {
+        color: red;
+    }
+
+    .buttonGreen
+    {
+        background-color: green;
+    }
+    .buttonAqua
+    {
+        background-color: aqua;
+    }
+    .buttonRed
+    {
+        background-color: rgb(233, 104, 104);
+    }
+}
+
+.commandNameText
+{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.commandName
+{
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
+}

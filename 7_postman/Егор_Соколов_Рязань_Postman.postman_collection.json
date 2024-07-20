@@ -1,0 +1,683 @@
+{
+	"info": {
+		"_postman_id": "0acbbb42-38db-4aca-8af4-e16beac0a672",
+		"name": "Егор_Соколов_Рязань_Postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36831855"
+	},
+	"item": [
+		{
+			"name": "game",
+			"item": [
+				{
+					"name": "/game Создание игры",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ от сервера корректный\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Id есть в теле ответа\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"if (jsonData.hasOwnProperty('id')) {\r",
+									"    var idValue = jsonData.id;\r",
+									"    pm.globals.set(\"myGameId\", idValue);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"Name\": \"testMap2000\",\r\n  \"MapId\": \"aac7c1ae22e249c2a88104f61413da8b\",\r\n  \"SwitchTimeout\": 30,\r\n  \"StartupTeamLives\": 6,\r\n  \"PoliceSpeed\": 10,\r\n  \"ThiefSpeed\": 8\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://5.101.77.14:8085/api/game",
+							"protocol": "http",
+							"host": [
+								"5",
+								"101",
+								"77",
+								"14"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"game"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/game Получение информации о созданных играх",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ от сервера корректен\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Ответ от сервера укладывается в 750 мс\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(750);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://5.101.77.14:8085/api/game",
+							"protocol": "http",
+							"host": [
+								"5",
+								"101",
+								"77",
+								"14"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"game"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/game/{gameId} Получение информации о игре по id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ от сервера корректен\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Ответ от сервера содержит поле id\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Имя карты корректно (testMap2000)\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"testMap2000\");\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://5.101.77.14:8085/api/game/{{myGameId}}",
+							"protocol": "http",
+							"host": [
+								"5",
+								"101",
+								"77",
+								"14"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"game",
+								"{{myGameId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/game/{gameId} Удалить игру по id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ от сервера корректен\", function () {\r",
+									"    pm.response.to.have.status(202);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Ответ от сервера укладывается в 1000 мс\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://5.101.77.14:8085/api/game/{{myGameId}}",
+							"protocol": "http",
+							"host": [
+								"5",
+								"101",
+								"77",
+								"14"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"game",
+								"{{myGameId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/games Получение информации о созданных играх",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ от сервера корректен\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Ответ от сервера укладывается в 1000 мс\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://5.101.77.14:8085/api/games",
+							"protocol": "http",
+							"host": [
+								"5",
+								"101",
+								"77",
+								"14"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"games"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "map",
+			"item": [
+				{
+					"name": "/map Получить список всех карт",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ от сервера корректен\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Ответ от сервера укладывается в 1250 мс\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1250);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://5.101.77.14:8085/api/map",
+							"protocol": "http",
+							"host": [
+								"5",
+								"101",
+								"77",
+								"14"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"map"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/maps Получить список всех карт",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ от сервера корректен\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Ответ от сервера укладывается в 1250 мс\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1250);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://5.101.77.14:8085/api/maps",
+							"protocol": "http",
+							"host": [
+								"5",
+								"101",
+								"77",
+								"14"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"maps"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/user/id/maps Получить список карт данного пользователя",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ от сервера корректен\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Ответ от сервера укладывается в 750 мс\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(750);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://5.101.77.14:8085/api/user/c8bf63a6207446b09729df9db43eed8c/maps",
+							"protocol": "http",
+							"host": [
+								"5",
+								"101",
+								"77",
+								"14"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"user",
+								"c8bf63a6207446b09729df9db43eed8c",
+								"maps"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "/user создание нового пользователя",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"function generateRandomLogin(length) {\r",
+									"    var characters = 'abcdefghijklmnopqrstuvwxyz';\r",
+									"    var login = '';\r",
+									"    for (var i = 0; i < length; i++) {\r",
+									"        var randomIndex = Math.floor(Math.random() * characters.length);\r",
+									"        login += characters[randomIndex];\r",
+									"    }\r",
+									"    return login;\r",
+									"}\r",
+									"\r",
+									"var randomLogin = generateRandomLogin(10);\r",
+									"pm.globals.set(\"tempLogin\", randomLogin);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ от сервера корректен\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Роль пользователя = 1\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.role).to.eql(1);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"if (jsonData.hasOwnProperty('id')) {\r",
+									"    var idValue = jsonData.id;\r",
+									"    pm.globals.set(\"newUserId\", idValue);\r",
+									"} else {\r",
+									"    console.error(\"Поле 'id' не найдено в ответе\");\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Login\": \"{{tempLogin}}\",\r\n    \"NativeName\": \"Other/Unknown\",\r\n    \"Password\": \"18121945\",\r\n    \"ConfirmPassword\": \"18121945\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://5.101.77.14:8085/api/user",
+							"protocol": "http",
+							"host": [
+								"5",
+								"101",
+								"77",
+								"14"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/me Просмотр информации о своей учетной записи",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ от сервера корректен\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Роль пользователя != 0\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.role).not.to.eql(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Login\": \"{{tempLogin}}\",\r\n    \"NativeName\": \"Other/Unknown\",\r\n    \"Password\": \"18121945\",\r\n    \"ConfirmPassword\": \"18121945\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://5.101.77.14:8085/api/me",
+							"protocol": "http",
+							"host": [
+								"5",
+								"101",
+								"77",
+								"14"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/user/{userId} Просмотр информации о учетной записи",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ от сервера корректен\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Роль пользователя = 1\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.role).to.eql(1);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Login\": \"{{tempLogin}}\",\r\n    \"NativeName\": \"Other/Unknown\",\r\n    \"Password\": \"18121945\",\r\n    \"ConfirmPassword\": \"18121945\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://5.101.77.14:8085/api/user/{{newUserId}}",
+							"protocol": "http",
+							"host": [
+								"5",
+								"101",
+								"77",
+								"14"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"user",
+								"{{newUserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/user Обновление учетных данных",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ от сервера корректен\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Время отклика меньше 1500 мс\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1500);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"NativeName\": \"I do not know!!!\",\r\n    \"Role\": 1,\r\n    \"OldPassword\": \"18121945\",\r\n    \"Password\": \"19451812\",\r\n    \"ConfirmPassword\": \"19451812\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://5.101.77.14:8085/api/user/{{newUserId}}",
+							"protocol": "http",
+							"host": [
+								"5",
+								"101",
+								"77",
+								"14"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"user",
+								"{{newUserId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "AQAAANCMnd8BFdERjHoAwE_Cl-sBAAAAdvNOpnWqbUyViKIe1KA6owAAAAACAAAAAAAQZgAAAAEAACAAAAA-EUXy-bGQt-OximKH_JOHrFHawJ7dQQAmKP-snnXc7AAAAAAOgAAAAAIAACAAAADV7k0go7NskSUAeWfjp5euv2YvHvy8th6l0v2VVh6ihCABAAAUlCTpo35kjMY7p_PI83TFagHSOF1yGrrT7WZyJOwYEwFl-Nonkr-opPI-e7dzkL5XhH9mR6nxixnFCah6LvM66e5OHkNEMcRBXaSHYtaX0BkBzCrRY5ELaGJs8cYk1CezInzykUWiwQuSl5bHp67kdTxilZJEjxNzwEKs-P9qf7O9FUHTt9y2ryE3TEUSVB7RECzRVCPdtXHcnuN6VL_iED3EH8-H2zoxOgEogU4JIgse40-6nNsSUgKp2S537UtPmzBeBtJL0JIPYTi5sZ5rQBqtojS_ldtAmmz5epHWF7IxbtmsJRzbvDeFHoXdDRFYgYhjqA5b5c8pW5plGhjUut9nV5JBNNVn1zm7gIKejuqRu6S6er9a4rTln5_PvghAAAAAZy_CxaHxeS_Sc0Nha8viAN4QaGbGqo6KEH3SMZzlWyFFVGEHbQ_hwxGcVgs9ZVQM4vlwMl0XO-wjNfPE82b2QQ",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "newUserId",
+			"value": "da18d794b01d44a2b89b06fe2132492b",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}

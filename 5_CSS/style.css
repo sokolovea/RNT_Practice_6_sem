@@ -1,0 +1,116 @@
+.gameWindow
+{
+    position: relative;
+    width: 1500px;
+    height: 800px;
+    margin: auto;
+    border: 10px solid rgb(91, 93, 83);
+    background-color: rgb(91, 93, 83);
+    color: white;
+    h1
+    {
+        text-align: center;
+    }
+}
+
+#changeRoles
+{
+    position: absolute;
+    width: 1500px;
+    border-bottom: 2px solid white;
+    padding: 5px 0px 15px 5px;
+    margin: auto;
+    text-align: center;
+    #progressBar
+    {
+        width: 50%;
+        margin: auto;
+        background: linear-gradient(to right, red, white);
+        text-align: left;
+        border-radius: 3px;
+    }
+}
+
+.commandsContainer
+{
+    position: absolute;
+    top: 138px;
+    width: 200px;
+    height: 590px;
+    margin: 5px;
+}
+
+#logs
+{
+    position: absolute;
+    top: 138px;
+    width: 200px;
+    height: 590px;
+    left: 1300px;
+    resize: none;
+    border: none;
+    background-color: inherit;
+    color: inherit;
+    margin: 0px;
+}
+
+#canvasGame
+{
+    position: absolute;
+    left: 202px;
+    top: 138px;
+    width: 1090px;
+    height: 602px;
+    background-color: inherit;
+    border-right: 2px solid white;
+    border-left: 2px solid white;
+}
+
+.buttonsContainer
+{
+    position: absolute;
+    bottom: 0px;
+    width: 1500px;
+    height: 45px;
+    border-top: 2px solid white;
+    margin: auto;
+    padding-top: 15px;
+    text-align: center;
+    button
+    {
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        height: 25px;
+    }
+
+    button:hover {
+        color: red;
+    }
+
+    .buttonGreen
+    {
+        background-color: green;
+    }
+    .buttonAqua
+    {
+        background-color: aqua;
+    }
+    .buttonRed
+    {
+        background-color: rgb(233, 104, 104);
+    }
+}
+
+.commandNameText
+{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.commandName
+{
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
+}

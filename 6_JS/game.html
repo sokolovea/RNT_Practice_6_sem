@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            Полицейские и жулики
+        </title>
+        <link href="style.css" type="text/css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div class="gameWindow">
+            <h1>
+                Полицейские и жулики
+            </h1>
+            <div id="changeRoles">
+                Смена ролей
+                <div id="progressBarContainer">
+                    <div id="progressBarFill"></div>
+                </div>
+            </div>
+            <div class="commandsContainer">
+                <div id="commandFirst">
+                    <span class="commandNameText">Название: </span><span id="nameFirst" class="commandName">Синяки</span><br>
+                    <span>Очки: </span><span id="countFirst">0</span><br>
+                    <span>Осталось жизней: </span><span id="lifesFirst">5</span><br>
+                </div>
+                <br>
+                <div id="commandSecond">
+                    <span class="commandNameText">Название: </span><span id="nameSecond" class="commandName">Курилки</span><br>
+                    <span>Очки: </span><span id="countSecond">0</span><br>
+                    <span>Осталось жизней: </span><span id="lifesSecond">5</span><br>
+                </div>
+            </div>
+            <textarea id="logs">Игра готова к запуску</textarea><br>
+            <canvas id="map" width="1090" height="602"></canvas><br>
+            <div class="buttonsContainer">
+                <button id="buttonStart" class="buttonGreen">Старт</button>
+                <button id="buttonStop" class="buttonAqua">Стоп</button>
+                <button id="buttonConnect" class="buttonAqua">Подключиться</button>
+                <button id="buttonDisconnect" class="buttonAqua">Отключиться</button>
+                <button id="buttonReconnect"class="buttonAqua">Переподключение</button>
+                <button id="buttonCancelGame" class="buttonRed">Отменить игру</button>
+                <button id="buttonExit" class="buttonRed">Выход</button>
+            </div>
+        </div>
+        <script src="../js/jquery.js" type="text/javascript"></script><!--required-->
+        <script src="../js/jquery.signalR.js" type="text/javascript"></script><!--required-->
+        <script src="../js/gameApi.js" type="text/javascript"></script><!--required-->
+        <script src="jsHelper.js" type="text/javascript"></script>
+        <script src="wrapper.js" type="text/javascript"></script>
+        <script src="game.js" type="text/javascript"></script>
+    </body>
+</html>
